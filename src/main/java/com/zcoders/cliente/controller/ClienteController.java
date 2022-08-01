@@ -5,6 +5,7 @@ import com.zcoders.cliente.model.Cliente;
 import com.zcoders.cliente.repository.ClienteRepository;
 import com.zcoders.cliente.request.ClienteRequest;
 import com.zcoders.cliente.response.ClienteResponse;
+import com.zcoders.cliente.sqs.ClienteNovoProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,9 @@ public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private ClienteNovoProducer clienteNovoProducer;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ClienteResponse inserir(@RequestBody ClienteRequest request){
@@ -26,6 +30,8 @@ public class ClienteController {
         Cliente cliente = request.toModel();
 
         clienteRepository.save(cliente);
+
+        clienteNovoProducer.send(cliente);
 
         return ClienteResponse.build(cliente);
     }
