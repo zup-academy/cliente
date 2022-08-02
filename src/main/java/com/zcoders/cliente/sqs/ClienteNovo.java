@@ -1,5 +1,6 @@
 package com.zcoders.cliente.sqs;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zcoders.cliente.model.CategoriaEnum;
 
 import java.time.LocalDate;
@@ -13,10 +14,13 @@ public class ClienteNovo {
 
     private String email;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate nascimento;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:MM:ss")
     private LocalDateTime incluidoEm;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:MM:ss")
     private LocalDateTime atualizadoEm;
 
     public ClienteNovo(Long id, String nome, String email, LocalDate nascimento, LocalDateTime incluidoEm, LocalDateTime atualizadoEm) {
