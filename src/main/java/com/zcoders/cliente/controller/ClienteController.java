@@ -17,9 +17,6 @@ public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @Autowired
-    private ClienteNovoProducer clienteNovoProducer;
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ClienteResponse inserir(@RequestBody ClienteRequest request){
@@ -30,8 +27,6 @@ public class ClienteController {
         Cliente cliente = request.toModel();
 
         clienteRepository.save(cliente);
-
-        clienteNovoProducer.send(cliente);
 
         return ClienteResponse.build(cliente);
     }
