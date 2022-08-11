@@ -2,6 +2,8 @@ package com.zcoders.cliente.request;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.zcoders.cliente.model.CategoriaEnum;
 import com.zcoders.cliente.model.Cliente;
 
@@ -16,6 +18,7 @@ public class ClienteRequest {
     private CategoriaEnum categoria;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate nascimento;
 
     public void setNome(String nome) {
