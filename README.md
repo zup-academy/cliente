@@ -2,18 +2,6 @@
 
 Porta do serviço 8081
 
-## API
+Documentação das apis :
 
-### Clientes
-
-```shell
-curl --request POST \
-  --url http://localhost:8081/clientes \
-  --header 'Content-Type: application/json' \
-  --data '{
-	"nome":"Ana Luiza Sousa",
-	"email":"apsousa10@gmail.com",
-	"nascimento":"15-02-2000",
-	"categoria":"BASIC"
-}'
-```
+http://localhost:8080/swagger-ui/index.html
